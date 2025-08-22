@@ -20,7 +20,7 @@
 ### 2. 安装本脚本
 点击下方的链接进行安装：
 
-[** ➡️ 点击此处，一键安装脚本 **](https://github.com/TianchunGu/Fenbi-Hide-Video/raw/main/fenbi-hide-video.user.js)
+[➡️ 点击此处，一键安装脚本 ](https://github.com/TianchunGu/Fenbi-Hide-Video/raw/main/fenbi-hide-video.user.js)
 
 Tampermonkey 会弹出一个确认页面，点击“安装”即可。
 
