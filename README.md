@@ -20,7 +20,7 @@
 ### 2. 安装本脚本
 点击下方的链接进行安装：
 
-**[****➡️**** 点击此处，一键安装脚本](**[https://github.com/你的GitHub用户名/你的仓库名/raw/main/fenbi-hide-video.user.js](https://github.com/你的GitHub用户名/你的仓库名/raw/main/fenbi-hide-video.user.js)* _(请记得将链接中的“你的GitHub用户名”和“你的仓库名”替换成您自己的)_
+**[****➡️**** 点击此处，一键安装脚本](**[https://github.com/TianchunGu/Fenbi-Hide-Video/raw/main/fenbi-hide-video.user.js](https://github.com/TianchunGu/Fenbi-Hide-Video/raw/main/fenbi-hide-video.user.js)* 
 
 Tampermonkey 会弹出一个确认页面，点击“安装”即可。
 
@@ -29,11 +29,12 @@ Tampermonkey 会弹出一个确认页面，点击“安装”即可。
 
 ## 🖼️ 效果截图
  **隐藏前:**  
-
+ ![隐藏前](https://github.com/TianchunGu/Fenbi-Hide-Video/blob/main/img/BeforHide.png)
  **隐藏后:**  
+ ![隐藏后](https://github.com/TianchunGu/Fenbi-Hide-Video/blob/main/img/AfterHide.png)
 
 ## ❓ 问题反馈
-如果您在使用过程中遇到任何问题，或有功能改进的建议，欢迎在本仓库的 [**Issues**](https://github.com/你的GitHub用户名/你的仓库名/issues) 页面提出。
+如果您在使用过程中遇到任何问题，或有功能改进的建议，欢迎在本仓库的 [**Issues**](https://github.com/TianchunGu/Fenbi-Hide-Video/issues) 页面提出。
 
 ## 📄 开源许可
 本脚本基于 [MIT License](LICENSE) 开源。
