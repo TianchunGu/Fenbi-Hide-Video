@@ -1,66 +1,32 @@
 // ==UserScript==
-// @name         粉笔教师网页端-隐藏解析视频 (终极文字定位版)
-// @name:en      Fenbi Teacher - Hide Analysis Video (Final Text-based)
+// @name         粉笔教师网页端 - 隐藏解析视频脚本
 // @namespace    http://tampermonkey.net/
-// @version      1.5
-// @description  通过查找“解析视频”文字来定位并隐藏视频模块，不受网站代码更新影响，最稳定的版本。
-// @author       TianChunGu
-// @match        *://spa.fenbi.com/*
-// @icon         https://www.fenbi.com/favicon.ico
+// @version      4.0
+// @description  通过定时循环查找并彻底移除页面上所有的视频版块，避免误伤且支持动态加载。
+// @author       TianchunGu
+// @match        https://www.fenbi.com/*
+// @match        https://spa.fenbi.com/*
 // @grant        none
+// @run-at        document-end
 // @license      MIT
 // ==/UserScript==
 
 (function () {
   'use strict';
 
-  console.log('粉笔视频隐藏脚本 V1.5 (文字定位版): 已启动...');
+  // 定时器将持续运行，以应对动态加载的新题目。
+  setInterval(() => {
+    // 使用 querySelectorAll 找到页面上 *所有* 匹配的视频版块。
+    const videoSections = document.querySelectorAll('section[id^="section-video-"]');
 
-  const hideVideoElementByText = () => {
-    // 定义要查找的标题文字
-    const targetText = "解析视频";
-
-    // 查找所有可能的标题元素，比如 h3, h4, div, span 等
-    const allElements = document.querySelectorAll('h1, h2, h3, h4, h5, div, span, p');
-
-    for (const element of allElements) {
-      // 检查元素内的文本是否完全等于目标文本 (trim() 用于去除前后空格)
-      if (element.textContent.trim() === targetText) {
-        // 找到了包含“解析视频”的元素！
-        // 现在，我们需要找到它的“外层大容器”并隐藏它。
-        // 经过分析，这个容器通常是标题元素的父元素的父元素。
-        // parentElement -> 父元素
-        // parentElement.parentElement -> 祖父元素（通常是整个视频模块）
-        let containerToHide = element.parentElement.parentElement;
-
-        // 为了保险起见，再往上找一层也试一下，以防结构变化
-        if (!containerToHide) continue; // 如果没有祖父元素，就跳过
-
-        // 检查一下容器是不是太大了（比如整个页面），避免误伤
-        if (containerToHide.clientHeight > 0 && containerToHide.clientHeight < 800) {
-          if (containerToHide.style.display !== 'none') {
-            console.log('粉笔视频隐藏脚本: 已通过文字定位找到并隐藏视频模块!', containerToHide);
-            containerToHide.style.display = 'none';
-            // 成功隐藏后就不用再继续查找了
-            return;
-          }
-        }
-      }
+    // 如果找到了一个或多个视频版块...
+    if (videoSections.length > 0) {
+      // ...就遍历找到的每一个版块，并将它们分别移除。
+      videoSections.forEach(section => {
+        section.remove();
+      });
+      console.log(`粉笔脚本(v6.0): 本次检测并移除了 ${videoSections.length} 个视频版块。`);
     }
-  };
+  }, 500); // 每半秒钟检查一次，性能影响极小。
 
-  // 使用 MutationObserver 持续监视页面内容变化
-  const observer = new MutationObserver((mutations) => {
-    // 每次页面变化都尝试执行隐藏函数
-    hideVideoElementByText();
-  });
-
-  // 启动观察器
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-  // 初始加载时也执行一次
-  hideVideoElementByText();
 })();
